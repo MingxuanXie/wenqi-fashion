@@ -4,6 +4,7 @@
   <head>
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <!-- <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script> -->
     <script src="https://unpkg.com/aframe-orbit-controls@1.3.0/dist/aframe-orbit-controls.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
@@ -13,31 +14,42 @@
       loading-screen="dotsColor: #fff; backgroundColor: black" 
       vr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false"
-      fog="type: exponential; color: darkgrey; density: 0.1"
+      fog="type: exponential; color: #222; density: 0.1"
     >
       <a-assets>
         <a-asset-item id="clothes-1" src="assets/clothes-1-fullbody.glb"></a-asset-item>
-        <a-asset-item id="bracelet-1" src="assets/bracelet-test.glb"></a-asset-item>
-
+        <a-asset-item id="bracelet-1" src="assets/bracelet.glb"></a-asset-item>
+        <a-asset-item id="main-scene" src="assets/main-scene.glb"></a-asset-item>
+        <a-asset-item id="main-bodies" src="assets/main-bodies.glb"></a-asset-item>
         <!-- <a-asset-item id="env" src="assets/cooper-hewitt_floor_03.glb"></a-asset-item> -->
-        <!-- <a-asset-item id="horse-obj" src="horse.obj"></a-asset-item> -->
-        <!-- <a-asset-item id="horse-mtl" src="horse.mtl"></a-asset-item> -->
-        <!-- <a-mixin id="giant" scale="5 5 5"></a-mixin> -->
         <!-- <audio id="neigh" src="neigh.mp3"></audio> -->
         <!-- <img id="advertisement" src="ad.png"> -->
         <!-- <video id="kentucky-derby" src="derby.mp4"></video> -->
       </a-assets>
 
-      <a-entity camera orbit-controls="target: 0 1.2 0; minDistance: 0.3; maxDistance: 25; initialPosition: 0 3 6"></a-entity>
+      <a-entity camera orbit-controls="target: 0 3 0; minDistance: 0.3; maxDistance: 25; initialPosition: 0 3 6"></a-entity>
+      <!-- <a-entity position="0 2.25 -15" particle-system="color: #EF0000,#44CC00"></a-entity> -->
 
-      <a-circle radius="2" rotation="-90 0 0" material="wireframe: false" shadow="receive: true; cast: false"></a-circle>
+      <!-- <a-circle radius="2" rotation="-90 0 0" material="wireframe: true" shadow="receive: true; cast: false"></a-circle> -->
       <!-- <a-sky color="#ECECEC"></a-sky> -->
 
-      <a-entity light="color: #ddd; castShadow: true" position="-1.35842 2.96582 2.7745" ></a-entity>
-      <a-entity light="type: ambient; color: #aaa"></a-entity>
+      <!-- <a-entity light="color: #fff; castShadow: false" position="-1.35842 2.96582 2.7745" ></a-entity> -->
+      <a-entity id="light-comp" position="0 4 2">
+        <a-entity light="type: point; color: #666; castShadow: true" position="0 0.05 0" ></a-entity>
+        <a-entity light="type: point; color: #666; castShadow: true" position="0 -0.05 0" ></a-entity>
+        <a-entity light="type: point; color: #666; castShadow: true" position="0.05 0 0" ></a-entity>
+        <a-entity light="type: point; color: #666; castShadow: true" position="-0.05 0 0" ></a-entity>
+        <a-entity light="type: point; color: #666; castShadow: true" position="0 0 0.05" ></a-entity>
+        <a-entity light="type: point; color: #666; castShadow: true" position="0 0 -0.05" ></a-entity>
+        <!-- <a-entity light="type: point; color: #fff; castShadow: true" position="0 0 0" ></a-entity> -->
+      </a-entity>
+      <a-entity light="type: ambient; color: #999"></a-entity>
 
       <a-entity id="model-1" gltf-model="#clothes-1" position="-1 0 0" scale="1 1 1" animation-mixer shadow="receive: false; cast: true"></a-entity>
-      <a-entity id="model-2" gltf-model="#bracelet-1" position="-0.14589 1.96057 -0.04143" rotation="-1.7119978918508998 -59.40082645239297 -65.80935939093122" scale="10 10 10" shadow="receive: false; cast: true"></a-entity>
+      <a-entity id="model-2" gltf-model="#bracelet-1" position="-1.564 2.757 0.407" rotation="27.977 146.952 -111.716" scale="15 15 15" shadow="receive: false; cast: true"></a-entity>
+      <a-entity id="main-bodies-entity" gltf-model="#main-bodies" position="0 0 0" scale="1 1 1" shadow="receive: false; cast: true"></a-entity>
+
+      <a-entity id="main-scene-entity" gltf-model="#main-scene" position="0 0 0" scale="1 1 1" shadow="receive: true; cast: true"></a-entity>
 
       <!-- <a-entity id="model-env" gltf-model="#env" position="0 -0.45 0" scale="0.01 0.01 0.01"></a-entity> -->
 
