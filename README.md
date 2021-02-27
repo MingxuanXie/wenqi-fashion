@@ -1,5 +1,5 @@
 # wenqi-fashion
-dev repo for Wenqi fashion design online showcase
+Wenqi fashion design online showcase
 
 Dev notes
 
